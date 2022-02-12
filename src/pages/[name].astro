@@ -1,0 +1,22 @@
+---
+import Layout from '../components/Layout.astro';
+export const getStaticPaths = () => {
+    return [{params: {name: 'ditto'}},
+            {params: {name: 'pikachu'}},
+            {params: {name: 'squirtle'}}];
+}
+
+const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${Astro.request.params.name}`)
+.then(res => res.json())
+.then(res => {
+    return res.name
+})
+
+---
+
+<Layout title={`Pokemon: ${data}`}>
+    <h1>{data}</h1>
+    <a href='/pikachu'>Pikachu</a>
+    <br>
+    <a href='/'>Home</a>
+</Layout>

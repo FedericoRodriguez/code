@@ -1,0 +1,11 @@
+---
+import Layout from '../components/Layout.astro';
+const data = await fetch(`https://pokeapi.co/api/v2/pokemon/ditto`)
+.then(res => res.json())
+.then(res => {
+    return res.name
+})
+
+---
+
+    <h1>{data}</h1>
